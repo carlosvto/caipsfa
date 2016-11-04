@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-19-2016 11:40:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="caipsfa.db.hibernate.Productos" table="productos" catalog="sistema_caipsfa" optimistic-lock="version">
+        <id name="codigoProducto" type="int">
+            <column name="codigo_producto" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="proveedores" class="caipsfa.db.hibernate.Proveedores" fetch="select">
+            <column name="codigo_proveedor" not-null="true">
+                <comment>Relacion con tabla proveedores</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="unidades" class="caipsfa.db.hibernate.Unidades" fetch="select">
+            <column name="codigo_unidad" not-null="true">
+                <comment>Relacion con tabla Unidades</comment>
+            </column>
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="150" not-null="true">
+                <comment>Nombre del producto</comment>
+            </column>
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="250" not-null="true">
+                <comment>Descripcion del producto</comment>
+            </column>
+        </property>
+        <property name="existencia" type="int">
+            <column name="existencia" not-null="true">
+                <comment>Existencias actuales</comment>
+            </column>
+        </property>
+        <property name="fechaVencimiento" type="date">
+            <column name="fecha_vencimiento" length="10" not-null="true">
+                <comment>fecha_vencimiento</comment>
+            </column>
+        </property>
+        <set name="salidases" table="salidas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_producto" not-null="true" />
+            </key>
+            <one-to-many class="caipsfa.db.hibernate.Salidas" />
+        </set>
+        <set name="entradases" table="entradas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_producto" />
+            </key>
+            <one-to-many class="caipsfa.db.hibernate.Entradas" />
+        </set>
+    </class>
+</hibernate-mapping>

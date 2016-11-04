@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-19-2016 11:40:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="caipsfa.db.hibernate.Unidades" table="unidades" catalog="sistema_caipsfa" optimistic-lock="version">
+        <id name="codigoUnidad" type="java.lang.Integer">
+            <column name="codigo_unidad" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="100" not-null="true">
+                <comment>Nombre de la unidad de medida.</comment>
+            </column>
+        </property>
+        <property name="prefijo" type="string">
+            <column name="prefijo" length="3" not-null="true">
+                <comment>Prefijo de la unidad de medida</comment>
+            </column>
+        </property>
+        <set name="productoses" table="productos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_unidad" not-null="true">
+                    <comment>Relacion con tabla Unidades</comment>
+                </column>
+            </key>
+            <one-to-many class="caipsfa.db.hibernate.Productos" />
+        </set>
+    </class>
+</hibernate-mapping>

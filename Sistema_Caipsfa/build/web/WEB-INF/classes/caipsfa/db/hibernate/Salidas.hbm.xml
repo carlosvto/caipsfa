@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-19-2016 11:40:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="caipsfa.db.hibernate.Salidas" table="salidas" catalog="sistema_caipsfa" optimistic-lock="version">
+        <id name="codigoSalida" type="java.lang.Integer">
+            <column name="codigo_salida" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="diagnostico" class="caipsfa.db.hibernate.Diagnostico" fetch="select">
+            <column name="codigo_diagnostico" not-null="true" />
+        </many-to-one>
+        <many-to-one name="doctores" class="caipsfa.db.hibernate.Doctores" fetch="select">
+            <column name="codigo_doctor" not-null="true" />
+        </many-to-one>
+        <many-to-one name="productos" class="caipsfa.db.hibernate.Productos" fetch="select">
+            <column name="codigo_producto" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarios" class="caipsfa.db.hibernate.Usuarios" fetch="select">
+            <column name="codigo_usuario" not-null="true" />
+        </many-to-one>
+        <property name="fechaSalida" type="date">
+            <column name="fecha_salida" length="10" not-null="true" />
+        </property>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

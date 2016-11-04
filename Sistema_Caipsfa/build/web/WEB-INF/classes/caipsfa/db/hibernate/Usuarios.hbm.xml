@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-19-2016 11:40:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="caipsfa.db.hibernate.Usuarios" table="usuarios" catalog="sistema_caipsfa" optimistic-lock="version">
+        <id name="idUsuario" type="int">
+            <column name="id_usuario" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tipoUsuarios" class="caipsfa.db.hibernate.TipoUsuarios" fetch="select">
+            <column name="id_tipo" not-null="true">
+                <comment>Relaci&#243;n con la tabla tipo_usuarios</comment>
+            </column>
+        </many-to-one>
+        <property name="nombreUsuario" type="string">
+            <column name="nombre_usuario" length="50" not-null="true">
+                <comment>Nombre por el cual se identificar&#225; el usuario, debe ser &#250;nico.</comment>
+            </column>
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="100" not-null="true">
+                <comment>Variable que ingresar&#225; el usuario. Ser&#225; cifrada por motivos de seguridad.</comment>
+            </column>
+        </property>
+        <set name="salidases" table="salidas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_usuario" not-null="true" />
+            </key>
+            <one-to-many class="caipsfa.db.hibernate.Salidas" />
+        </set>
+    </class>
+</hibernate-mapping>

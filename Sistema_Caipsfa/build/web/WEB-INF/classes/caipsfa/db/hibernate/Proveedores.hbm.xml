@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-19-2016 11:40:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="caipsfa.db.hibernate.Proveedores" table="proveedores" catalog="sistema_caipsfa" optimistic-lock="version">
+        <id name="codigoProveedor" type="int">
+            <column name="codigo_proveedor" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreProveedor" type="string">
+            <column name="nombre_proveedor" length="100" not-null="true">
+                <comment>Nombre del laboratorio/empresa proveedora.</comment>
+            </column>
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="250" not-null="true">
+                <comment>Direcci&#243;n de la sucursal del proveedor</comment>
+            </column>
+        </property>
+        <property name="contacto" type="int">
+            <column name="contacto" not-null="true">
+                <comment>Nombre de la persona de contacto</comment>
+            </column>
+        </property>
+        <property name="numeroTelefono" type="string">
+            <column name="numero_telefono" length="9" not-null="true">
+                <comment>Numero de telefono del proveedor</comment>
+            </column>
+        </property>
+        <set name="productoses" table="productos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_proveedor" not-null="true">
+                    <comment>Relacion con tabla proveedores</comment>
+                </column>
+            </key>
+            <one-to-many class="caipsfa.db.hibernate.Productos" />
+        </set>
+    </class>
+</hibernate-mapping>

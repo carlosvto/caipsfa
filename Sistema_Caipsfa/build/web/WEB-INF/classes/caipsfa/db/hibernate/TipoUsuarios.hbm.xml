@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-19-2016 11:40:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="caipsfa.db.hibernate.TipoUsuarios" table="tipo_usuarios" catalog="sistema_caipsfa" optimistic-lock="version">
+        <id name="idTipo" type="java.lang.Integer">
+            <column name="id_tipo" />
+            <generator class="identity" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="100" not-null="true">
+                <comment>Descripci&#243;n del rol del tipo de usuario.</comment>
+            </column>
+        </property>
+        <set name="usuarioses" table="usuarios" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_tipo" not-null="true">
+                    <comment>Relaci&#243;n con la tabla tipo_usuarios</comment>
+                </column>
+            </key>
+            <one-to-many class="caipsfa.db.hibernate.Usuarios" />
+        </set>
+    </class>
+</hibernate-mapping>

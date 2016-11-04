@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-19-2016 11:40:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="caipsfa.db.hibernate.Diagnostico" table="diagnostico" catalog="sistema_caipsfa" optimistic-lock="version">
+        <id name="codigoDiagnostico" type="java.lang.Integer">
+            <column name="codigo_diagnostico" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="200" not-null="true">
+                <comment>Nombre del diagnostico</comment>
+            </column>
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="200" not-null="true">
+                <comment>Descripcion del diagnostico.</comment>
+            </column>
+        </property>
+        <set name="salidases" table="salidas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_diagnostico" not-null="true" />
+            </key>
+            <one-to-many class="caipsfa.db.hibernate.Salidas" />
+        </set>
+    </class>
+</hibernate-mapping>

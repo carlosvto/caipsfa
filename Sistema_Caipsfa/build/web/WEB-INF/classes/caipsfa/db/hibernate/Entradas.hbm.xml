@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-19-2016 11:40:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="caipsfa.db.hibernate.Entradas" table="entradas" catalog="sistema_caipsfa" optimistic-lock="version">
+        <id name="idEntrada" type="java.lang.Integer">
+            <column name="id_entrada" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="productos" class="caipsfa.db.hibernate.Productos" fetch="select">
+            <column name="id_producto" />
+        </many-to-one>
+        <property name="fechaEntrada" type="date">
+            <column name="fecha_entrada" length="10" />
+        </property>
+        <property name="cantidadIngreso" type="java.lang.Integer">
+            <column name="cantidad_ingreso" />
+        </property>
+        <property name="precio" type="java.lang.Double">
+            <column name="precio" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

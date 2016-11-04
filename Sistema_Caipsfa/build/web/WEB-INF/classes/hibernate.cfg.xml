@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sistema_caipsfa?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <mapping resource="caipsfa/db/hibernate/TipoUsuarios.hbm.xml"/>
+    <mapping resource="caipsfa/db/hibernate/Productos.hbm.xml"/>
+    <mapping resource="caipsfa/db/hibernate/Salidas.hbm.xml"/>
+    <mapping resource="caipsfa/db/hibernate/Unidades.hbm.xml"/>
+    <mapping resource="caipsfa/db/hibernate/Diagnostico.hbm.xml"/>
+    <mapping resource="caipsfa/db/hibernate/Proveedores.hbm.xml"/>
+    <mapping resource="caipsfa/db/hibernate/Usuarios.hbm.xml"/>
+    <mapping resource="caipsfa/db/hibernate/Doctores.hbm.xml"/>
+    <mapping resource="caipsfa/db/hibernate/Entradas.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

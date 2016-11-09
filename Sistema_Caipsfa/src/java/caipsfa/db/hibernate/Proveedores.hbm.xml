@@ -18,7 +18,7 @@
                 <comment>Direcci&#243;n de la sucursal del proveedor</comment>
             </column>
         </property>
-        <property name="contacto" type="int">
+        <property name="contacto" type="string">
             <column name="contacto" not-null="true">
                 <comment>Nombre de la persona de contacto</comment>
             </column>

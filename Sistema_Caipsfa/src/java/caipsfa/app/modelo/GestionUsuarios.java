@@ -56,8 +56,8 @@ public class GestionUsuarios {
             Transaction trans =  ses.beginTransaction();
             Usuarios user = new Usuarios();
             TipoUsuarios type = new TipoUsuarios();
-            type.setIdTipo(1);
-            user.setIdUsuario(0);
+            type.setIdTipo(usuario.getIdTipo());
+            user.setIdUsuario(usuario.getIdUsuario());
             user.setNombreUsuario(usuario.getNombreUsuario());
             user.setPassword(usuario.getPassword());
             user.setTipoUsuarios(type);
@@ -81,8 +81,8 @@ public class GestionUsuarios {
             Transaction trans =  ses.beginTransaction();
             Usuarios user = new Usuarios();
             TipoUsuarios type = new TipoUsuarios();
-            type.setIdTipo(1);
-            user.setIdUsuario(0);
+            type.setIdTipo(usuario.getIdTipo());
+            user.setIdUsuario(usuario.getIdUsuario());
             user.setNombreUsuario(usuario.getNombreUsuario());
             user.setPassword(usuario.getPassword());
             user.setTipoUsuarios(type);

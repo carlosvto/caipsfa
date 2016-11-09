@@ -83,5 +83,29 @@
         <put name="content" value="/webforms/usuarios/formusuario.jsp"/>
         <put name="sidebar" value="/WEB-INF/templete/blankpage.jsp"/>
     </definition>
+    
+    <definition name="doctorform" extends="principalEfn">
+        <put name="menuenf" value="/WEB-INF/templete/menuenf.jsp"/>
+        <put name="content" value="/webforms/doctores/formdoctores.jsp"/>
+        <put name="sidebar" value="/WEB-INF/templete/blankpage.jsp"/>
+    </definition>
+    
+    <definition name="diagnosticform" extends="principalEfn">
+        <put name="menuenf" value="/WEB-INF/templete/menuenf.jsp"/>
+        <put name="content" value="/webforms/diagnosticos/formdiagnostico.jsp"/>
+        <put name="sidebar" value="/WEB-INF/templete/blankpage.jsp"/>
+    </definition>
+    
+    <definition name="providersform" extends="principalEfn">
+        <put name="menuenf" value="/WEB-INF/templete/menuenf.jsp"/>
+        <put name="content" value="/webforms/proveedores/formproveedores.jsp"/>
+        <put name="sidebar" value="/WEB-INF/templete/blankpage.jsp"/>
+    </definition>
+    
+    <definition name="unitsform" extends="principalEfn">
+        <put name="menuenf" value="/WEB-INF/templete/menuenf.jsp"/>
+        <put name="content" value="/webforms/unidades/formunidades.jsp"/>
+        <put name="sidebar" value="/WEB-INF/templete/blankpage.jsp"/>
+    </definition>
 
 </tiles-definitions>

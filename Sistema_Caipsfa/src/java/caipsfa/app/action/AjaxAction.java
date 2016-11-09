@@ -99,4 +99,28 @@ public class AjaxAction extends DispatchAction {
         request.setAttribute("tipoUsuarios", tipoUsuarios);
         return mapping.findForward("addformuser");
     }
+    
+    public ActionForward redirectDoctor(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        return mapping.findForward("addformdoctor");
+    }
+    
+    public ActionForward redirectDiagnostic(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        return mapping.findForward("addformdiagnostic");
+    }
+    
+    public ActionForward redirectProviders(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        return mapping.findForward("addformproviders");
+    }
+    
+    public ActionForward redirectUnits(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        return mapping.findForward("addformunits");
+    }
 }

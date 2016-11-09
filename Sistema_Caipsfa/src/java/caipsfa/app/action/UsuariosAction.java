@@ -39,6 +39,8 @@ public class UsuariosAction extends DispatchAction {
         UsuariosForm usuarios = (UsuariosForm) form;
         GestionUsuarios gusuarios = new GestionUsuarios();
         if(gusuarios.addUser(usuarios)){
+            ArrayList<Usuarios> listusuarios = gusuarios.getAllUsers();
+            request.setAttribute("listusuarios", listusuarios);
             return mapping.findForward("tableusuarios");
         }else{
             return mapping.findForward("addformuser");
@@ -66,7 +68,34 @@ public class UsuariosAction extends DispatchAction {
                }
                form = usuarios;
                ArrayList<TipoUsuarios> tipoUsuarios = gusuarios.getUserType();
+               request.setAttribute("editar", "Editar Usuario");
                request.setAttribute("tipoUsuarios", tipoUsuarios);
                return mapping.findForward("addformuser");
+    }
+    
+    public ActionForward Editar(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        UsuariosForm usuarios = (UsuariosForm) form;
+        GestionUsuarios gusuarios = new GestionUsuarios();
+        if(gusuarios.editUser(usuarios)){
+            ArrayList<Usuarios> listusuarios = gusuarios.getAllUsers();
+            request.setAttribute("listusuarios", listusuarios);
+            return mapping.findForward("tableusuarios");
+        }else{
+            return mapping.findForward("addformuser");
+        }
+    }
+    
+    public ActionForward Eliminar(ActionMapping mapping, ActionForm form,
+            HttpServletRequest request, HttpServletResponse response)
+            throws Exception {
+        int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+        GestionUsuarios gusuarios = new GestionUsuarios();
+        if(gusuarios.deleteUser(idUsuario)){
+            return mapping.findForward("tableusuarios");
+        }else{
+            return mapping.findForward("tableusuarios");
+        }
     }
 }

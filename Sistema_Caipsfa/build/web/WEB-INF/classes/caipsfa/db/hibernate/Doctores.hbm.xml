@@ -29,7 +29,7 @@
             </column>
         </property>
         <property name="nit" type="string">
-            <column name="nit" length="16" not-null="true">
+            <column name="nit" length="17" not-null="true">
                 <comment>numero de identificacion tributaria</comment>
             </column>
         </property>

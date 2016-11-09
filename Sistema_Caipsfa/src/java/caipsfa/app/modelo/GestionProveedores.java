@@ -30,4 +30,80 @@ public class GestionProveedores {
         return proveedores;
     }
     
+    public ArrayList<Proveedores> geOne(String codigoProveedores){
+        SessionFactory sesFact = HibernateUtil.getSessionFactory();
+        Session ses = sesFact.openSession();
+        proveedores = new ArrayList<Proveedores>();
+        String sql = "from Proveedores where codigoProveedor = '"+ codigoProveedores +"'";
+        proveedores = (ArrayList<Proveedores>)ses.createQuery(sql).list();
+        return proveedores;
+    }
+    
+    public boolean addProvider(ProveedoresForm provs){
+        boolean estado = false;
+        try{
+            SessionFactory sesFact = HibernateUtil.getSessionFactory();
+            Session ses = sesFact.openSession();
+            Transaction trans =  ses.beginTransaction();
+            Proveedores providers = new Proveedores();
+            providers.setCodigoProveedor(Integer.parseInt(provs.getCodigoProveedor()));
+            providers.setNombreProveedor(provs.getNombreProveedor());
+            providers.setDireccion(provs.getDireccion());
+            providers.setContacto(provs.getContacto());
+            providers.setNumeroTelefono(provs.getNumeroTelefono());
+            ses.save(providers);
+            trans.commit();
+            ses.close();
+            estado = true;
+            return estado;
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return estado;
+        }
+    }
+    
+    public boolean editProvider(ProveedoresForm provs){
+        boolean estado = false;
+        try{
+            SessionFactory sesFact = HibernateUtil.getSessionFactory();
+            Session ses = sesFact.openSession();
+            Transaction trans =  ses.beginTransaction();
+            Proveedores providers = new Proveedores();
+            providers.setCodigoProveedor(Integer.parseInt(provs.getCodigoProveedor()));
+            providers.setNombreProveedor(provs.getNombreProveedor());
+            providers.setDireccion(provs.getDireccion());
+            providers.setContacto(provs.getContacto());
+            providers.setNumeroTelefono(provs.getNumeroTelefono());
+            ses.update(providers);
+            trans.commit();
+            ses.close();
+            estado = true;
+            return estado;
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return estado;
+        }
+    }
+    
+    public boolean deleteProvider(int id){
+        boolean estado = false;
+        try{
+            SessionFactory sesFact = HibernateUtil.getSessionFactory();
+            Session ses = sesFact.openSession();
+            Transaction trans =  ses.beginTransaction();
+            Proveedores providers = (Proveedores)ses.get(Proveedores.class, id);
+            ses.delete(providers);
+            trans.commit();
+            ses.close();
+            estado = true;
+            return estado;
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return estado;
+        }
+    }
+    
 }

@@ -1,11 +1,13 @@
 <%@ include file="/top-tags.jsp"%>
-        <script>
-            
+        <script type="text/javascript" language="JavaScript">
             function nuevo(){
                 document.UsuariosForm.method.value="Agregar";
-                document.UsuariosForm.submit;
+                document.UsuariosForm.submit();
             }
-
+            function editar(){
+                document.UsuariosForm.method.value="Editar";
+                document.UsuariosForm.submit();
+            }
         </script>
             <section class="wrapper">
           	<h3><i class="fa fa-angle-right"></i> Usuarios</h3>
@@ -17,7 +19,12 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 col-sm-2 control-label">Código del usuario</label>
                                     <div class="col-sm-10">
-                                        <html:text property="idUsuario" styleClass="form-control"/>
+                                        <logic:present name="editar">
+                                            <html:text property="idUsuario" styleClass="form-control" readonly="true"/>
+                                        </logic:present>
+                                        <logic:notPresent name="editar">
+                                            <html:text property="idUsuario" styleClass="form-control"/>
+                                        </logic:notPresent>
                                     <span class="help-block">El codigo debe constar de 8 números.</span>
                                     </div>
                                 </div>
@@ -42,7 +49,12 @@
                                     </div>
                                 </div>
                                 <div style="float:right;">
-                                    <html:button property="Ingresar" styleClass="btn btn-theme" onclick="nuevo()">Agregar Usuario</html:button>
+                                    <logic:notPresent name="editar">
+                                        <html:button property="Ingresar" styleClass="btn btn-theme" onclick="nuevo()">Agregar Usuario</html:button>
+                                    </logic:notPresent>
+                                    <logic:present name="editar">
+                                        <html:button property="Ingresar" styleClass="btn btn-theme" onclick="editar()">Modificar Usuario</html:button>
+                                    </logic:present>
                                     <html:hidden property="method" value=""/>
                                 </div>
                             </html:form>
@@ -52,6 +64,6 @@
             </section>
         <script>
             <logic:present name="idTipo">
-                $(".tipoUsuario option:selected").val(<%=request.getAttribute("idTipo")%>);
+                $(".tipoUsuario").val(<%=request.getAttribute("idTipo")%>);
             </logic:present>
         </script>

@@ -7,6 +7,10 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="UnidadesForm" type="caipsfa.app.form.UnidadesForm"/>
+        <form-bean name="ProveedoresForm" type="caipsfa.app.form.ProveedoresForm"/>
+        <form-bean name="DiagnosticoForm" type="caipsfa.app.form.DiagnosticoForm"/>
+        <form-bean name="DoctoresForm" type="caipsfa.app.form.DoctoresForm"/>
         <form-bean name="UsuariosForm" type="caipsfa.app.form.UsuariosForm"/>
         <form-bean name="LoginForm" type="caipsfa.app.form.LoginForm"/>
     </form-beans>
@@ -58,10 +62,34 @@
             <forward name="tabledoctores" path="doctores"/>
         </action>
         
+        <action path="/doctor" parameter="method" scope="request" 
+                type="caipsfa.app.action.AjaxAction">
+            <forward name="addformdoctor" path="doctorform"/>
+        </action>
+        
+        <action input="/formdoctores.do?method=getDoctors" parameter="method"
+                name="DoctoresForm" path="/mantodoctores" scope="request" 
+                type="caipsfa.app.action.DoctoresAction">
+            <forward name="tabledoctores" path="doctores"/>
+            <forward name="addformdoctor" path="doctorform"/>
+        </action>
+        
         <!-- ACTIONS OF DIAGNOSTICO-->
         <action path="/formdiagnosticos" parameter="method" scope="request"
                 type="caipsfa.app.action.AjaxAction">
             <forward name="tablediagnostico" path="diagnostico"/>
+        </action>
+        
+        <action path="/diagnostic" parameter="method" scope="request" 
+                type="caipsfa.app.action.AjaxAction">
+            <forward name="addformdiagnostic" path="diagnosticform"/>
+        </action>
+        
+        <action input="/formdiagnosticos.do?method=getDiag" name="DiagnosticoForm" 
+                path="/mantodiagnostico" scope="request" parameter="method"
+                type="caipsfa.app.action.DiagnosticoAction">
+            <forward name="tablediagnosticos" path="diagnostico"/>
+            <forward name="addformdiagnostic" path="diagnosticform"/>
         </action>
         
         <!-- ACTIONS OF PRODUCTS-->
@@ -76,10 +104,34 @@
             <forward name="tableproveedores" path="proveedores"/>
         </action>
         
+        <action path="/providers" parameter="method" scope="request" 
+                type="caipsfa.app.action.AjaxAction">
+            <forward name="addformproviders" path="providersform"/>
+        </action>
+        
+        <action input="/formproveedores.do?method=getProvs" name="ProveedoresForm" 
+                path="/mantoproveedores" scope="request" parameter="method"
+                type="caipsfa.app.action.ProveedoresAction">
+            <forward name="tableproveedores" path="proveedores"/>
+            <forward name="addformproviders" path="providersform"/>
+        </action>
+        
         <!-- ACTIONS OF UNIDADES-->
         <action path="/formunidades" parameter="method" scope="request"
                 type="caipsfa.app.action.AjaxAction">
             <forward name="tableunidades" path="unidades"/>
+        </action>
+        
+        <action path="/units" parameter="method" scope="request" 
+                type="caipsfa.app.action.AjaxAction">
+            <forward name="addformunits" path="unitsform"/>
+        </action>
+        
+        <action input="/formunidades.do?method=getUnidades" name="UnidadesForm" 
+                path="/mantounidades" scope="request" parameter="method"
+                type="caipsfa.app.action.UnidadesAction">
+            <forward name="tableunidades" path="/formunidades.do?method=getUnidades"/>
+            <forward name="addformunits" path="unitsform"/>
         </action>
         
     </action-mappings>

@@ -16,10 +16,6 @@ public class UsuariosDecorator extends TableDecorator {
     public String getActualizar(){
         Usuarios users = (Usuarios) getCurrentRowObject();
         String enlace;
-        /*enlace ="<a href=\"mantousuarios.do?method=getOneUser&idUsuario="
-                +users.getIdUsuario()+"&nombreUsuario="+users.getNombreUsuario()+"&password="
-                +users.getPassword()+"&idTipo="+users.getTipoUsuarios()+"\" class=\"btn btn-primary btn-xs\"><i class=\"fa fa-pencil\"></i> Actualizar</a>";
-                */
         String var = users.getNombreUsuario();
         String query = Base64.getEncoder().encodeToString(var.getBytes());
         enlace ="<a href=\"mantousuarios.do?method=getOneUser&nombreUsuario=" +

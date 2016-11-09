@@ -17,7 +17,7 @@
             </div><!-- /row -->
 </section>
 <div id="dialog-confirm" title="Eliminación de usuario">
-	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Estás seguro que deseas eliminar este registro?</p>
+	<p class="enunciado"><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Estás seguro que deseas eliminar el usuario</p>
 </div>
 <script src="assets/js/jquery-ui/external/jquery/jquery.js"></script>
 <script src="assets/js/jquery-ui/jquery-ui.js"></script>
@@ -66,6 +66,8 @@
 	}
 	</style>
 <script>
+    var idUsuario;
+    var nombreUsuario;
     jQuery(function($){
         $( "#dialog-confirm" ).dialog({
 	autoOpen: false,
@@ -74,7 +76,16 @@
 		{
 			text: "Borrar",
 			click: function() {
-				$( this ).dialog( "close" );
+                                $.ajax({
+                                    url: 'mantousuarios.do?method=Eliminar',
+                                    type: 'POST',
+                                    data: {idUsuario: idUsuario},
+                                    success: function(){
+                                        alert("Usuario Eliminado con éxito");
+                                        document.location = "formusuarios.do?method=getUsers";
+                                    }
+                                });
+                                $( this ).dialog( "close" );                                
 			}
 		},
 		{
@@ -89,14 +100,12 @@
 // Link to open the dialog
 
 $(".delete").click(function(event){
+    idUsuario = $(this).attr("idUsuario");
+    nombreUsuario = $(this).attr("nombreUsuario");
+    $(".enunciado").append(" "+ nombreUsuario + "?");
     $("#dialog-confirm").dialog("open");
     event.preventDefault();
 });
 
-$(".refresh").click(function(){
-    var iduser = $(this).attr('idUsuario');
-    var array = {idUsuario: iduser};
-    $.post("mantousuarios.do?method=getOneUser", array);
-});
     });
 </script>

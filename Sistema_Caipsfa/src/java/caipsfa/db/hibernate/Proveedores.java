@@ -14,7 +14,7 @@ public class Proveedores  implements java.io.Serializable {
      private int codigoProveedor;
      private String nombreProveedor;
      private String direccion;
-     private int contacto;
+     private String contacto;
      private String numeroTelefono;
      private Set productoses = new HashSet(0);
 
@@ -22,14 +22,14 @@ public class Proveedores  implements java.io.Serializable {
     }
 
 	
-    public Proveedores(int codigoProveedor, String nombreProveedor, String direccion, int contacto, String numeroTelefono) {
+    public Proveedores(int codigoProveedor, String nombreProveedor, String direccion, String contacto, String numeroTelefono) {
         this.codigoProveedor = codigoProveedor;
         this.nombreProveedor = nombreProveedor;
         this.direccion = direccion;
         this.contacto = contacto;
         this.numeroTelefono = numeroTelefono;
     }
-    public Proveedores(int codigoProveedor, String nombreProveedor, String direccion, int contacto, String numeroTelefono, Set productoses) {
+    public Proveedores(int codigoProveedor, String nombreProveedor, String direccion, String contacto, String numeroTelefono, Set productoses) {
        this.codigoProveedor = codigoProveedor;
        this.nombreProveedor = nombreProveedor;
        this.direccion = direccion;
@@ -59,11 +59,11 @@ public class Proveedores  implements java.io.Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    public int getContacto() {
+    public String getContacto() {
         return this.contacto;
     }
     
-    public void setContacto(int contacto) {
+    public void setContacto(String contacto) {
         this.contacto = contacto;
     }
     public String getNumeroTelefono() {
